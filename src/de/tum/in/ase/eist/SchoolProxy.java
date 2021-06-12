@@ -21,8 +21,6 @@ public class SchoolProxy implements ConnectionInterface{
     public void login(int teacherID) {
         if (teacherIDs.contains(teacherID)){
             authorized = true;
-        } else{
-
         }
     }
 
@@ -33,13 +31,18 @@ public class SchoolProxy implements ConnectionInterface{
 
     @Override
     public void connect(URL url) {
-        if (blacklistedHosts.contains(url.getHost())){
-            System.out.println("Connection to " + url + " rejected.");
-            networkConnection.connect(redirectPage);
-        } else {
-            System.out.println("Connecting to url " + url);
+        if (!authorized){
+            if (blacklistedHosts.contains(url.getHost())){
+                System.out.println("Connection to " + url + " rejected.");
+                networkConnection.connect(redirectPage);
+            } else {
+                System.out.println("Connecting to url " + url);
+                networkConnection.connect(url);
+            }
+        } else{
             networkConnection.connect(url);
         }
+
     }
 
     @Override
