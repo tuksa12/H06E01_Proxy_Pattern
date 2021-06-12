@@ -33,10 +33,10 @@ public class SchoolProxy implements ConnectionInterface{
 
     @Override
     public void connect(URL url) {
-        if (blacklistedHosts.contains(url)){
+        if (blacklistedHosts.contains(url.getHost())){
             System.out.println("Connection to " + url + " rejected.");
             networkConnection.connect(redirectPage);
-        } else if (authorized) {
+        } else {
             System.out.println("Connecting to url " + url);
             networkConnection.connect(url);
         }
