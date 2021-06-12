@@ -20,7 +20,7 @@ public final class SchoolBrowser {
 		System.out.println("The SchoolBrowser does not allow connections to the following hosts: " + blacklistedHosts);
 		URL redirectPage = new URL("https://www.exzellenz.tum.de/startseite/");
 
-		/*
+
 		SchoolProxy schoolProxy = new SchoolProxy(blacklistedHosts, redirectPage, teacherIDs);
 
 		schoolProxy.connect(new URL("https://www.google.com/search?q=pinguine"));
@@ -34,6 +34,6 @@ public final class SchoolBrowser {
 		schoolProxy.login(TEACHER_ID_MRS_SCHNEIDER);
 		schoolProxy.connect(new URL("https://www.facebook.com/TU.Muenchen"));
 		schoolProxy.disconnect();
-		 */
+
 	}
 }

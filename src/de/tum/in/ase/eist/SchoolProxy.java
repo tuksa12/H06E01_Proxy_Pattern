@@ -3,12 +3,12 @@ package de.tum.in.ase.eist;
 import java.net.URL;
 import java.util.Set;
 
-public class SchoolProxy implements ConnectionInterface{
-    private Set<String> blacklistedHosts;
-    private URL redirectPage;
-    private Set<Integer> teacherIDs;
+public class SchoolProxy implements ConnectionInterface {
+    private final Set<String> blacklistedHosts;
+    private final URL redirectPage;
+    private final Set<Integer> teacherIDs;
     private boolean authorized;
-    private NetworkConnection networkConnection;
+    private final NetworkConnection networkConnection;
 
     public SchoolProxy(Set<String> blacklistedHosts, URL redirectPage, Set<Integer> teacherIDs) {
         this.blacklistedHosts = blacklistedHosts;
@@ -19,7 +19,7 @@ public class SchoolProxy implements ConnectionInterface{
     }
 
     public void login(int teacherID) {
-        if (teacherIDs.contains(teacherID)){
+        if (teacherIDs.contains(teacherID)) {
             authorized = true;
         }
     }
@@ -31,15 +31,15 @@ public class SchoolProxy implements ConnectionInterface{
 
     @Override
     public void connect(URL url) {
-        if (!authorized){
-            if (blacklistedHosts.contains(url.getHost())){
+        if (!authorized) {
+            if (blacklistedHosts.contains(url.getHost())) {
                 System.out.println("Connection to " + url + " rejected.");
                 networkConnection.connect(redirectPage);
             } else {
                 System.out.println("Connecting to url " + url);
                 networkConnection.connect(url);
             }
-        } else{
+        } else {
             networkConnection.connect(url);
         }
 
