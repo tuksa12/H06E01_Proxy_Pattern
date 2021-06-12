@@ -27,7 +27,7 @@ public class SchoolProxy implements ConnectionInterface{
     }
 
     public void logout() {
-
+        authorized = false;
     }
 
 
@@ -37,6 +37,7 @@ public class SchoolProxy implements ConnectionInterface{
             System.out.println("Connection to " + url + " rejected.");
             networkConnection.connect(redirectPage);
         } else if (authorized) {
+            System.out.println("Connecting to url " + url);
             networkConnection.connect(url);
         }
     }
